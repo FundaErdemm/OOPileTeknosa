@@ -18,7 +18,7 @@ public class PageActions {
     public PageActions(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));       //açılan sayfayı max 10 saniye kadar bekle
-        this.js = (JavascriptExecutor) driver;
+      //  this.js = (JavascriptExecutor) driver;
     }
 
 
@@ -40,6 +40,8 @@ public class PageActions {
     }
 
     public void clickOnFirstProduct() throws InterruptedException {    //saat kelimesi bulundu mu?
+        logger.info("İlk ürüne tıklanıyor.");
+
         WebElement link = driver.findElement(firstProductLink);
         String hrefValue = link.getAttribute("href");
 
@@ -58,14 +60,26 @@ public class PageActions {
 
         try {
             WebElement button = driver.findElement(addToCartButton);
+            logger.info("Sepete ekle butonu bulundu.");
             return button.isDisplayed();
+
         } catch (org.openqa.selenium.NoSuchElementException e) {
+            logger.warn("Sepete ekle butonu bulunamadı.");
             return false;
         }
+
+     /*   if (isAddToCartButtonVisible()) {
+            logger.info("Sepete ekle butonu bulundu.");
+        }
+        else {
+            logger.warn("Sepete ekle butonu bulunamadı.");
+        }
+        */
+
     }
 
     public void showAlertMessage(String message) {                       // ekranda msj verme
-        js.executeScript("alert('" + message + "');");
-        driver.switchTo().alert().accept();
+  //      js.executeScript("alert('" + message + "');");
+      //  driver.switchTo().alert().accept();
     }
 }

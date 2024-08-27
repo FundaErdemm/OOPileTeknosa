@@ -7,22 +7,14 @@ public class LoginTests extends BaseTest {
 
     @Test
     void teknosagiristesti() throws InterruptedException {
-        logger.info("Test başlıyor: teknosagiristesti");
 
-        pageActions.searchForProduct("saat");
-        pageActions.waitForSearchResults();
+        PageActions pageAction = new PageActions(driver);
 
-        logger.info("İlk ürüne tıklanıyor.");
-        pageActions.clickOnFirstProduct();      // saat listesindeki ilk ürüne tıklama
+        pageAction.searchForProduct("saat");
+        pageAction.waitForSearchResults();
+        pageAction.clickOnFirstProduct();
+        pageAction.isAddToCartButtonVisible();
 
-        if (pageActions.isAddToCartButtonVisible()) {
-            logger.info("Sepete ekle butonu bulundu.");
-        }
-        else {
-            logger.warn("Sepete ekle butonu bulunamadı.");
-        }
-
-        logger.info("Test tamamlandı: teknosagiristesti");
     }
 }
 
@@ -30,6 +22,3 @@ public class LoginTests extends BaseTest {
 
 
 
-
-//  pageActions.showAlertMessage("Sepete ekle Butonu bulundu!");
-//   pageActions.showAlertMessage("Sepete ekle Butonu bulunamadı!");
